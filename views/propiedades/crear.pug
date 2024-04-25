@@ -1,0 +1,32 @@
+extends ../layout/index
+
+block contenido
+    div.py-10
+            h1.text-4xl.my-10.font-extrabold.text-center Bienes
+                  span.font-normal Raices
+            h2.text-center.text-4xl= pagina 
+
+            div(class="bg-white  shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
+                from.space-y-8
+                    div.space-y-5
+                        h3.text-lg.leanding-6-font-medium.text-gray Informacion General 
+                        p.text-gray-600 Añade Informacion de la Propiedad en Venta 
+
+                        div
+                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo") Titulo Anuncio
+                            input#titulo.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="titulo" type="text" name="Ej: Casa de Campo")
+
+                        div
+                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo")  Categoria
+                            select#Categoria.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="categoria")
+                                option(value="") - Seleccione -  
+                        
+                        div
+                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo")  Precio
+                            select#Precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="precio")
+                                option(value="") - Seleccione -  
+
+
+
+            
+                    
