@@ -6,7 +6,7 @@ block contenido
                   span.font-normal Raices
             h2.text-center.text-4xl= pagina 
 
-            div(class="bg-white  shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
+            div(class="bg-white  shadow py-8 px-4 rounded mx-auto max-w-4xl my-15 md:px-10")
                 from.space-y-8
                     div.space-y-5
                         h3.text-lg.leanding-6-font-medium.text-gray Informacion General 
@@ -16,15 +16,58 @@ block contenido
                             label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo") Titulo Anuncio
                             input#titulo.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="titulo" type="text" name="Ej: Casa de Campo")
 
-                        div
-                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo")  Categoria
-                            select#Categoria.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="categoria")
-                                option(value="") - Seleccione -  
-                        
-                        div
-                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo")  Precio
-                            select#Precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="precio")
-                                option(value="") - Seleccione -  
+                        div(class="md:flex md:gap-4 space-y-5 md: space-y-0")
+
+                            div(class="md:w-1/2")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="categoria")  Categoria
+                                select#categoria.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="categoria")
+                                    option(value="") - Seleccione -  
+                            
+                            div(class="md:w-1/2")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="precio")  Precio
+                                select#precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="precio")
+                                    option(value="") - Seleccione -  
+                            
+                        div(class="md:flex md:gap-4 space-y-5 md: space-y-0")   
+
+                            div(class="md:w-1/3")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="habitaciones")  Habitaciones
+                                select#categoria.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Habitaciones")
+                                    option(value="") - Seleccione - 
+                                    - let n = 1 
+                                    while n < 10
+                                        option(value=n) #{n++}
+                            
+                            div(class="md:w-1/3")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="baños")  Baños
+                                select#precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Baños")
+                                    option(value="") - Seleccione - 
+                                    - let y = 1 
+                                    while y < 5
+                                        option(value=y) #{y++}
+                                        
+                                       
+
+
+                            div(class="md:w-1/3")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="estacionamientos")   Estacionamientos 
+                                select#precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Estacionamientos")
+                                    option(value="") - Seleccione - 
+                                     - let w = 1 
+                                    while w < 5
+                                        option(value=w) #{w++}
+
+
+
+    block scripts
+
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js")
+    script(src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geosearch/2.7.0/bundle.min.js")
+    script(src="/js/mapa.js")
+                                      
+                                       
 
 
 
