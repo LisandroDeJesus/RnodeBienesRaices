@@ -1,5 +1,6 @@
 extends ../layout/index
-
+block styles 
+     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 block contenido
     div.py-10
             h1.text-4xl.my-10.font-extrabold.text-center Bienes
@@ -58,7 +59,7 @@ block contenido
                                         option(value=w) #{w++}
 
 
-
+                        #mapa.h-96 
     block scripts
         script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
         script(src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js")
