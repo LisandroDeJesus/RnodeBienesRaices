@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import db from '../config/db.js'
 
-const  Propiedades  = db.define('propiedades', {
-    id : {                                     //1
+const  Propiedad  = db.define('propiedades', {
+    id : {                                     
          type: DataTypes.UUID,                                    
         defaultValue: DataTypes.UUIDV4,
         allowNull:false,
@@ -43,11 +43,22 @@ const  Propiedades  = db.define('propiedades', {
      lng:{
         type: DataTypes.INTEGER,
         allowNull:false
+     },
+     Image:{
+         type: DataTypes.STRING,
+         allowNull:false
+     },
+     publicado:{
+      type: DataTypes.BOOLEAN,
+        allowNull:false,
+        defaultValue:false
      }
 
      
 
 });
+
+export default Propiedad;
 
 /*
 
@@ -55,6 +66,14 @@ const  Propiedades  = db.define('propiedades', {
 
 *   Empezamos con la creadios de la tabla proiedades y a partir de la  linea 5 empezamos a definir las caracteriticas del la primera columna
     que es el id como podemos ver definimos el tipo de dato valor por defecto ue no pued ser nulo y finalmente que es llave promaria 
+
+    Inicialmente definimos las columnas autonomas que no van a depender de tablas externas o modelos externos para mostrar informacion 
+
+    Absolutamente todo lo que podemos ver dentro del objeto despues de propiedades se trata de los titulos se tratan de las columnas  los 
+
+    objetos dentro de dichas columnas se trata de que  contienen dichas columnas el tipo de datos condiciones  o valores por defecro en caso 
+    
+    que posean uno 
 
 
 
