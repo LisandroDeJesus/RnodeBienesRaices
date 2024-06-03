@@ -10,11 +10,11 @@ block contenido
             if errores
                 div(class="max-w-md mx-auto my-10 ")
                     each error in errores 
-                        p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
+                            p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
 
             div(class="bg-white  shadow py-8 px-4 rounded mx-auto max-w-4xl my-15 md:px-10")
-                from.space-y-8(method="POST" action="/propiedades/crear" noValidate)
-                    input(type="hidden" name="_csrf"  value=csrfToken )
+                form(space-y-8.method="POST" action="/propiedades/crear")
+                    input(type="hidden" name="_csrf"  value=csrfToken)
                     div.space-y-5
                         h3.text-lg.leanding-6-font-medium.text-gray Informacion General 
                         p.text-gray-600 Añade Informacion de la Propiedad en Venta 

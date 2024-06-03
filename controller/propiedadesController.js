@@ -35,26 +35,25 @@ const  crear = async (req,res) => {
 
 const guardar =  async (req,res) => {
 
- let resultado = validationResult(req)  
+    let resultado = validationResult(req)  
 
- if(!resultado.isEmpty()){
+    if(!resultado.isEmpty()){
 
-//Consultar Modelo y Categorias:
+                                           //Consultar Modelo y Categorias:
 
-const [categorias, precios] = await Promise.all([
-     Categoria.findAll(),
-     Precio.findAll()
-])
+        const [categorias, precios] = await Promise.all([
+            Categoria.findAll(),
+            Precio.findAll()
+        ])
 
-return res.render('propiedades/crear',{
-    pagina:'Ingrese su Propiedad',
-    barra:true,
-    categorias,
-    precios,
-    errores: resultado.array()
-    })
-
-  } 
+        return res.render('propiedades/crear',{
+            pagina:'Ingrese su Propiedad',
+            barra:true,
+            categorias,
+            precios,
+            errores: resultado.array()
+        })
+    } 
 
 }
 
