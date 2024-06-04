@@ -1,18 +1,21 @@
-import express from 'express'
+import express from 'express';
 import { body } from 'express-validator';
-import { admin , crear , guardar} from '../controller/propiedadesController.js'
-const router = express.Router();
-
-router.get('/mis-propiedades', admin)
-
-router.get('/propiedades/crear', crear) 
+import { admin, crear , guardar} from '../controller/propiedadesController.js';
 
 
-router.post('/propiedades/crear',   
-    body('titulo').notEmpty().withMessage('El titulo del Anuncio es Obligatorio'),
-guardar
-)
+export const router = express.Router();
+
+// Ruta para ver las propiedades del usuario
+router.get('/mis-propiedades', admin);
+
+// Ruta para mostrar el formulario de creación de propiedades
+router.get('/propiedades/crear', crear);
+
+router.post('/propiedades/crear',
+  body('titulo').notEmpty().withMessage('El título del anuncio es obligatorio'),
+  guardar
+);
 
 
 
-export default router
+export default router;
