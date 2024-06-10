@@ -9,7 +9,7 @@ const admin = (req, res) =>{
     })
 }
 
-// Formulario para crear una nueva propiedad
+// Formulario para crear una nueva propiedadgit 
 const crear = async (req, res) => {
     // Consultar Modelo de Precio y Categorias
     const [categorias, precios] = await Promise.all([
@@ -22,7 +22,7 @@ const crear = async (req, res) => {
         csrfToken: req.csrfToken(),
         categorias,
         precios,
-        datos: {}
+        datos: {} //mantener datos ingresados
     })
 }
 
@@ -45,7 +45,7 @@ const guardar = async (req, res) => {
             categorias,
             precios, 
             errores: resultado.array(),
-            datos: req.body
+            datos: req.body //Mantener Datos Ingresados
         })
     }
 

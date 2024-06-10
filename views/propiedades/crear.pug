@@ -21,12 +21,15 @@ block contenido
 
                         div
                             label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo") Titulo Anuncio
-                            input#titulo.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="titulo" type="text" name=" titulo ")
+                            input#titulo.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="titulo" type="text" name="titulo" value=
+                            datos.titulo ? datos.titulo : '' )
+
+                            
 
 
                         div
                             label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="Descripcion") Descripcion del Anuncio
-                            textarea#Descripcion.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="Ej:  casa en la orilla del rio con hermosos atardeceres y tierra fertiles" type="text" name="Descripcion")
+                            textarea#Descripcion.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="Ej:  casa en la orilla del rio con hermosos atardeceres y tierra fertiles" type="text" name="Descripcion")= datos.Descripcion ? datos.Descripcion : ''
 
                         div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
 
@@ -35,43 +38,44 @@ block contenido
                                 select#categoria.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="categoria")
                                     option(value="") - Seleccione -  
                                     each  categoria in  categorias 
-                                        option(value=categoria.id)= categoria.nombre 
+                                        option(value=categoria.id selected= datos.categoria ?  datos.categoria == categoria.id ? true : false : nul)= categoria.nombre 
                             
                             div(class="md:w-1/2")
                                 label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="precio")  Precio
                                 select#precio.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="precio")
                                     option(value="") - Seleccione -  
                                      each  precio in  precios 
-                                        option(value=precio.id)= precio.nombre 
+                                        option(value=precio.id selected= datos.precio ? datos.precio == precio.id ? true : false : null)= precio.nombre 
                             
                         div(class="md:flex md:gap-4 space-y-5 md:space-y-0")   
 
                             div(class="md:w-1/3")
-                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="habitaciones")  Habitaciones
-                                select#habitaciones.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Habitaciones")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="habitaciones")  habitaciones
+                                select#habitaciones.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="habitaciones")
                                     option(value="") - Seleccione - 
-                                    - let n = 1 
-                                    while n < 10
-                                        option(value=n) #{n++}
-                            
+                                    - var n = 1; 
+                                        while n < 10
+                                            option(value=n  selected= datos.habitaciones ? datos.habitaciones  == n  ? 
+                                             true : false : null ) #{n++}
+                                
                             div(class="md:w-1/3")
                                 label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="wc")  Baños
-                                select#wc.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Baños")
+                                select#wc.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="wc")
                                     option(value="") - Seleccione - 
-                                    - let y = 1 
-                                    while y < 5
-                                        option(value=y) #{y++}
+                                    - var y = 1 
+                                        while y < 5
+                                            option(value=y  selected= datos.wc ? datos.wc  == y ? true : false : null) #{y++}
                                         
                                        
 
 
                             div(class="md:w-1/3")
                                 label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="estacionamientos")   Estacionamientos 
-                                select#estacionamientos.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="Estacionamientos")
+                                select#estacionamientos.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="estacionamientos")
                                     option(value="") - Seleccione - 
-                                     - let w = 1 
-                                    while w < 5
-                                        option(value=w) #{w++}
+                                     - var w = 1 
+                                        while w < 5
+                                            option(value=w selected= datos.estacionamientos ? datos.estacionamientos  == w ? true : false : null) #{w++}
 
                         div.border-gray-200.border-t.py-5
                             h3.text-lg.leading-6.font-medium.text-gray-900 Informacion General 
@@ -79,11 +83,11 @@ block contenido
                             #mapa.h-96 
 
                             div 
-                                p.calle 
-                            
-                            input(type="hidden" name="calle" id="calle")
-                            input(type="hidden" name="lat" id="lat")
-                            input(type="hidden" name="lng" id="lng")
+                                p.calle=  datos.calle ? datos.calle : '' 
+                                
+                                input(type="hidden" name="calle" id="calle" value= datos.calle ? datos.calle : '')
+                                input(type="hidden" name="lat" id="lat" value= datos.lat ? datos.lat : '' )
+                                input(type="hidden" name="lng" id="lng" value= datos.lng ? datos.lng : '' )
 
                         input(class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-bold uppercase cursor-pointer"  type="submit"  value="Añadir Imagen")
     block scripts
