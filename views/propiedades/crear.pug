@@ -28,8 +28,8 @@ block contenido
 
 
                         div
-                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="Descripcion") Descripcion del Anuncio
-                            textarea#Descripcion.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="Ej:  casa en la orilla del rio con hermosos atardeceres y tierra fertiles" type="text" name="Descripcion")= datos.Descripcion ? datos.Descripcion : ''
+                            label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="descripcion") Descripcion
+                            textarea#descripcion.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder ="Ej:  casa en la orilla del rio con hermosos atardeceres y tierra fertiles" type="text" name="descripcion")= datos.descripcion ? datos.descripcion : ''
 
                         div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
 
@@ -70,24 +70,25 @@ block contenido
 
 
                             div(class="md:w-1/3")
-                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="estacionamientos")   Estacionamientos 
-                                select#estacionamientos.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="estacionamientos")
+                                label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="estacionamiento")   estacionamientos 
+                                select#estacionamiento.w-full.px-4.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(name="estacionamiento")
                                     option(value="") - Seleccione - 
                                      - var w = 1 
                                         while w < 5
                                             option(value=w selected= datos.estacionamientos ? datos.estacionamientos  == w ? true : false : null) #{w++}
 
-                        div.border-gray-200.border-t.py-5
-                            h3.text-lg.leading-6.font-medium.text-gray-900 Informacion General 
-                            p.text-gray-600 Añade Ubicacion de la Propiedad en Venta 
-                            #mapa.h-96 
+                        div.border-gray-200.border-t.py-5.space-y-5
+                            h3.text-lg.leading-6.font-medium.text-gray-900 Ubicación
+                            p.text-gray-600 Ubica la propiedad en el mapa
+                            #mapa.h-96
 
-                            div 
-                                p.calle=  datos.calle ? datos.calle : '' 
-                                
-                                input(type="hidden" name="calle" id="calle" value= datos.calle ? datos.calle : '')
-                                input(type="hidden" name="lat" id="lat" value= datos.lat ? datos.lat : '' )
-                                input(type="hidden" name="lng" id="lng" value= datos.lng ? datos.lng : '' )
+
+                            div
+                                p.calle= datos.calle ? datos.calle : ''
+
+                            input(type="hidden" name="calle" id="calle" value= datos.calle ? datos.calle : '')
+                            input(type="hidden" name="lat" id="lat" value= datos.lat ? datos.lat : '')
+                            input(type="hidden" name="lng" id="lng" value= datos.lng ? datos.lng : '')
 
                         input(class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-bold uppercase cursor-pointer"  type="submit"  value="Añadir Imagen")
     block scripts

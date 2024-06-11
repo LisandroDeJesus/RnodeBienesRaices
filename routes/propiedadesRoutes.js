@@ -13,9 +13,7 @@ router.get('/propiedades/crear', crear);
 
 router.post('/propiedades/crear',
   body('titulo').notEmpty().withMessage('El título del anuncio es obligatorio'),
-  body('descripcion')
-  .notEmpty().withMessage('La Descripción no puede ir vacia')
-  .isLength({ max: 200 }).withMessage('La Descripción es muy larga'),
+  body('descripcion').notEmpty().withMessage('La Descripción no puede ir vacia').isLength({ max: 110 }).withMessage('La Descripción es muy larga'),
 body('categoria').isNumeric().withMessage('Selecciona una categoría'),
 body('precio').isNumeric().withMessage('Selecciona un rango de Precios'),
 body('habitaciones').isNumeric().withMessage('Selecciona la Cantidad de Habitaciones'),
