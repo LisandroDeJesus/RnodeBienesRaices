@@ -1,11 +1,9 @@
 import {exit} from 'node:process'
 import cateogrias from './categorias.js'
 import precios from './precios.js'
+import usuarios from './usuarios.js'
 import db from  '../config/db.js'
-import { Categoria, Precio } from  '../models/index.js'
-import { truncate } from 'node:fs'
-
-
+import { Categoria, Precio, Usuario } from  '../models/index.js'
 
 const importarDatos   = async () => {
     try{
@@ -16,7 +14,8 @@ const importarDatos   = async () => {
         //Insertar Datos 
         await Promise.all([
             Categoria.bulkCreate(cateogrias),
-            Precio.bulkCreate(precios)
+            Precio.bulkCreate(precios),
+           Usuario.bulkCreate(usuarios)
          ]);
         
       
@@ -29,24 +28,21 @@ const importarDatos   = async () => {
 }
 
 
-const eliminarDatos = async  () => {
-    try{
-    await Promise.all([
-        Categoria.destroy({where: {} , truncate : true }), 
-        Precio.destroy({where: {} , truncate : true }), 
-     ])
-     console.log("Datos Eliminados");
-     exit()
-    }catch(error){
-        console.log(error);
+const eliminarDatos = async () => {
+    try {
+        await db.sync({force: true})
+        console.log('Datos Eliminados Correctamente');
+        exit()
+    } catch (error) {
+        console.log(error)
         exit(1)
     }
 }
 
-if(process.argv[2] === "-i" ){
-    importarDatos();
-}
+    if(process.argv[2] === "-i") {
+        importarDatos();
+    }
 
-if(process.argv[2] === "-e" ){
-    eliminarDatos();
-}
+    if(process.argv[2] === "-e") {
+        eliminarDatos();
+    }

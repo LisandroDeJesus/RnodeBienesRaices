@@ -1,12 +1,13 @@
 import express from 'express';
 import { body } from 'express-validator';
 import { admin, crear , guardar} from '../controller/propiedadesController.js';
+import protegerRuta from '../midleware/protejerRuta.js';
 
 
 export const router = express.Router();
 
 // Ruta para ver las propiedades del usuario
-router.get('/mis-propiedades', admin);
+router.get('/mis-propiedades', protegerRuta, admin);
 
 // Ruta para mostrar el formulario de creación de propiedades
 router.get('/propiedades/crear', crear);
