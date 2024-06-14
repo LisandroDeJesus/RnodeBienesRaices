@@ -1,5 +1,7 @@
 import { validationResult } from "express-validator";
 import { Precio, Categoria, Propiedad } from "../models/index.js"
+//import protegerRuta from "../midleware/protejerRuta.js";
+
 
 const admin = (req, res) =>{
     res.render('propiedades/admin',{
@@ -29,7 +31,6 @@ const guardar = async (req, res) => {
 
     // Validación
     let resultado = validationResult(req)
-
     if(!resultado.isEmpty()) {
 
         // Consultar Modelo de Precio y Categorias
@@ -49,33 +50,41 @@ const guardar = async (req, res) => {
     }
 
 
-    //Crear un registro :
-const  { titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria :categoriaId} = req.body ;
-
-
-try {
-
-    const propiedadGuardada = await Propiedad.create({
-        titulo,
-        descripcion,
-        habitaciones,
-        estacionamiento,
-        wc,
-        calle,
-        lat,
-        lng,
-        precio,
-        categoria
-       })
+        //Crear un registro :
+    const  { titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria :categoriaId} = req.body 
     
-} catch (error) {
-    console.log(error);
-}
+    const {id : usuarioId} = req.usuario;
+    
 
-}
+    try {
+
+        const propiedadGuardada = await Propiedad.create({
+            titulo,
+            descripcion,
+            habitaciones,
+            estacionamiento,
+            wc,
+            calle,
+            lat,
+            lng,
+            precioId,
+            categoriaId,
+            usuarioId,
+            Imagen: ''
+        })
+
+        const { id } = propiedadGuardada 
+        res.redirect(` /propiedades/agregar-imagen/${id} `)
+        
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
 
 
 
-export{ admin, 
+export{
+     admin, 
     crear, 
     guardar }

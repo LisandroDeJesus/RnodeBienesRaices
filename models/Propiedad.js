@@ -20,14 +20,11 @@ const  Propiedad  = db.define('propiedades', {
         type: DataTypes.INTEGER,
         allowNull:false
      },
-     Estacionamientos : {
+     estacionamiento: {
         type: DataTypes.INTEGER,
         allowNull:false
      },
-     Estacionamientos : {
-        type: DataTypes.INTEGER,
-        allowNull:false
-     },
+
      wc: {
         type: DataTypes.INTEGER,
         allowNull:false
@@ -44,7 +41,7 @@ const  Propiedad  = db.define('propiedades', {
         type: DataTypes.INTEGER,
         allowNull:false
      },
-     Image:{
+     Imagen:{
          type: DataTypes.STRING,
          allowNull:false
      },

@@ -10,9 +10,9 @@ export const router = express.Router();
 router.get('/mis-propiedades', protegerRuta, admin);
 
 // Ruta para mostrar el formulario de creación de propiedades
-router.get('/propiedades/crear', crear);
+router.get('/propiedades/crear', protegerRuta, crear);
 
-router.post('/propiedades/crear',
+router.post('/propiedades/crear', protegerRuta,
   body('titulo').notEmpty().withMessage('El título del anuncio es obligatorio'),
   body('descripcion').notEmpty().withMessage('La Descripción no puede ir vacia').isLength({ max: 110 }).withMessage('La Descripción es muy larga'),
 body('categoria').isNumeric().withMessage('Selecciona una categoría'),
