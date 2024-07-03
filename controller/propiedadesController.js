@@ -102,13 +102,15 @@ const guardar = async (req, res) => {
             return  res.redirect('/mis-propiedades');
         }  
         
-        res.render('propiedades/agregar-imagen',{
-            pagina:'Agregar Imagen',
-            propiedad
-        })
+      
 
       //Comprobar que la Propiedad Pertenece a quien visita esta pagina
+        console.log(req.usuario);
 
+      res.render('propiedades/agregar-imagen',{
+        pagina:'Agregar Imagen',
+        propiedad
+    })
     }
 
 

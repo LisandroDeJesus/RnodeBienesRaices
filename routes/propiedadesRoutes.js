@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
 import { admin, crear , guardar, agregarImagen} from '../controller/propiedadesController.js';
-import protegerRuta from '../midleware/protejerRuta.js';
+import protegerRuta from '../middleware/protejerRuta.js';
 
 
 export const router = express.Router();
@@ -24,7 +24,10 @@ body('lat').notEmpty().withMessage('Ubica la Propiedad en el Mapa'),
   guardar
 );
 
-router.get('/propiedades/agregar-imagen/:id', agregarImagen);
+router.get('/propiedades/agregar-imagen/:id', 
+    protegerRuta,
+    agregarImagen
+ );
 
 
 
