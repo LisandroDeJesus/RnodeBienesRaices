@@ -83,8 +83,8 @@ const guardar = async (req, res) => {
 
     const agregarImagen = async (req,res) => {
 
+        //Extraer datos 
 
-    
       const {id} =  req.params
       
       //Validar que la Propiedad Exista:
@@ -105,12 +105,16 @@ const guardar = async (req, res) => {
       
 
       //Comprobar que la Propiedad Pertenece a quien visita esta pagina
-        console.log(req.usuario);
 
-      res.render('propiedades/agregar-imagen',{
-        pagina:'Agregar Imagen',
-        propiedad
-    })
+        if( req.usuario.id.toString() !== propiedad.usuarioId.toString()){
+            return  res.redirect('/mis-propiedades');
+        }
+
+      
+        res.render('propiedades/agregar-imagen',{
+            pagina:'Agregar Imagen',
+            propiedad
+     })
     }
 
 
