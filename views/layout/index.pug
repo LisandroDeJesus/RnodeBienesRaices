@@ -8,8 +8,9 @@ html(lang="en")
         link(rel="stylesheet", type=("text/css") href="/css/app.css")
         block styles  
     body.min-screen.bg-gray-50 
-        if barra
-            include header  
+        include includes/header-admin   
 
         main(class="mx-auto container mt-10 px-2")
             block contenido 
+
+        block scripts    
