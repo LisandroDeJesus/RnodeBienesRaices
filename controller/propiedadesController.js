@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator";
 import { Precio, Categoria, Propiedad } from "../models/index.js"
+import { request } from "express";
 //import protegerRuta from "../midleware/protejerRuta.js";
 
 
@@ -112,9 +113,59 @@ const guardar = async (req, res) => {
 
       
         res.render('propiedades/agregar-imagen',{
-            pagina:'Agregar Imagen',
+            pagina:`Agregar Imagen ${propiedad.titulo} `,
+            csrfToken: req.csrfToken(),
             propiedad
-     })
+        })
+    }
+
+
+    const almacenarImagen = async (req, res, next)  => {
+   
+        
+     //Extraer datos 
+
+      const {id} =  req.params
+      
+        //Validar que la Propiedad Exista:
+
+        const propiedad = await Propiedad.findByPk(id);
+
+        if(!propiedad){
+            return  res.redirect('/mis-propiedades');
+        }
+
+       
+        //Comprobar que la Propiedad no este Publicada
+
+        if(propiedad.publicado){
+            return  res.redirect('/mis-propiedades');
+        }  
+        
+      
+
+        //Comprobar que la Propiedad Pertenece a quien visita esta pagina
+
+        if( req.usuario.id.toString() !== propiedad.usuarioId.toString()){
+            return  res.redirect('/mis-propiedades');
+        }
+
+
+        try {
+           //console.log(req.file)
+             //Almacenar Imagen y Publicar Propiedad 
+             propiedad.Imagen = req.file.filename
+             propiedad.publicado = 1
+
+             await propiedad.save()
+             
+             next()
+
+
+        } catch (error) {
+            console.error('Error al guardar la propiedad:', error.message);
+        }
+
     }
 
 
@@ -123,5 +174,6 @@ export{
      admin, 
     crear, 
     guardar,
-    agregarImagen
+    agregarImagen,
+    almacenarImagen
  }
