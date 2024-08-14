@@ -4,9 +4,19 @@ import { request } from "express";
 //import protegerRuta from "../midleware/protejerRuta.js";
 
 
-const admin = (req, res) =>{
+const admin = async (req, res) =>{
+
+    const {id} = req.usuario
+
+    const propiedades = await Propiedad.findAll({
+        where:{
+            UsuarioId : id
+        }
+    })
+
     res.render('propiedades/admin',{
-        pagina: 'Mis Propiedades'
+        pagina: 'Mis Propiedades',
+        propiedades
     })
 }
 
