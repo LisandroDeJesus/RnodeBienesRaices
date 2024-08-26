@@ -14,10 +14,10 @@ import db from './config/db.js';
 const app = express()
 
 // Configuración de CSP
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-eval'");
-  next();
-});
+//app.use((req, res, next) => {
+ // res.setHeader("Content-Security-Policy", "script-src 'self' 'unsafe-eval'");
+ // next();
+//});
 
 // Habilitar lectura de Datos de formularios:
 app.use(express.urlencoded({extended: true}))
