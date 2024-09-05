@@ -320,9 +320,41 @@ const guardar = async (req, res) => {
 
      await propiedad.destroy()
      res.redirect('/mis-propiedades')
+    }
 
 
 
+    //////////Area Publica:
+
+
+    //Muestra Una Propiedad
+
+    const mostrarPropiedad = async (req , res) =>{
+
+        const { id } = req.params
+
+        //conprobar que la propiedad exista:
+
+        const propiedad = await Propiedad.findByPk(id, {
+            include: [
+                {model: Categoria, as:'categoria'},
+                {model: Precio, as:'precio'}
+            ]
+        })
+
+        if(!propiedad){
+            return res.redirect('/404');
+        }
+     
+        res.render('propiedades/mostrar',{
+            propiedad,
+            pagina:propiedad.titulo,
+            
+
+            
+        })
+     
+        
 
     }
 
@@ -337,5 +369,6 @@ export{
     almacenarImagen,
     editar,
     guardarCambios,
-    eliminar
+    eliminar,
+    mostrarPropiedad
  }
