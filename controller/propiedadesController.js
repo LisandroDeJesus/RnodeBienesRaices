@@ -6,25 +6,70 @@ import { Precio, Categoria, Propiedad } from "../models/index.js"
 
 const admin = async (req, res) =>{
 
-    const {id} = req.usuario
+    //Leer Query String:
 
-    const propiedades = await Propiedad.findAll({
-        where:{
-            UsuarioId : id
-        },
-        include: [
-            {model: Categoria, as:'categoria'},
-            {model: Precio, as:'precio'}
-        ]
+    const {pagina:paginaActual} = req.query
+    
+    const expresion = /^[1-9]$/
 
-        })
+    if(!expresion.test(paginaActual)){
+        return res.redirect('/mis-propiedades?pagina=1')
+    }
+ 
+            
 
-    res.render('propiedades/admin',{
-        pagina: 'Mis Propiedades',
-        propiedades,
-        csrfToken: req.csrfToken(),
-    })
-}
+    try {
+
+        const {id} = req.usuario
+            //Limites y offset para el paginador:
+            const limit = 5
+            const offset = (( paginaActual * limit) - limit ) 
+                
+
+                const [propiedades, total] = await Promise.all([
+                      Propiedad.findAll({
+                        limit:limit,
+                        offset,
+                        where:{
+                            UsuarioId : id
+                        },
+                        include: [
+                            {model: Categoria, as:'categoria'},
+                            {model: Precio, as:'precio'}
+                        ],
+                    }),
+                    Propiedad.count({
+                        where:{
+                            usuarioId:id
+                        }
+                    })
+                ])
+              
+               
+                
+
+                res.render('propiedades/admin',{
+                    pagina: 'Mis Propiedades',
+                    propiedades,
+                    csrfToken: req.csrfToken(),
+                    paginas:Math.ceil(total / limit),
+                    paginaActual: Number(paginaActual),
+                    total,
+                    offset,
+                    limit
+
+                })
+        
+     }catch (error) {
+        console.log(error);
+        
+     }
+        
+   
+     }
+    
+
+    
 
 // Formulario para crear una nueva propiedadgit 
 const crear = async (req, res) => {

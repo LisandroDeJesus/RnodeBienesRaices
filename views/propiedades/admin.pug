@@ -7,7 +7,7 @@ block contenido
         h2.text-center.text-4xl= pagina
         a(href="/propiedades/crear"
           class="rounded py-2 bg-indigo-500 px-10 hover:bg-indigo-700 text-sm font-bold text-center text-white my-5 inline-block w-full sm:w-auto")
-          Publicar Propiedad
+            Publicar  Publicar Nueva Propiedad
         
 
 
@@ -49,6 +49,25 @@ block contenido
                                         input(type="hidden" name="_csrf" value= csrfToken  )
                                         input(type="submit" class=" w-full text-center px-2 py-2 md:py-1 text-xs leading-5 font-semibold rounded-sm cursor-pointer bg-red-100 text-red-800" value="Eliminar" ) 
 
+                div(class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 ")
+                    div(class="flex-1 flex justify-between sm:hidden")
+                        a(href=`/mis-propiedades?pagina=${paginaActual - 1}` class=`${paginaActual === 1 ? 'pointer-events-none' : ''} relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50`) Anterior
+
+                        a(href=`/mis-propiedades?pagina=${paginaActual + 1}` class=` ${paginaActual === paginas ? 'pointer-events-none' : '' } relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50`)  Siguiente
+
+                    div(class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between ")
+                        p(class="text-sm text-gray-700 gap-2") Mostrando 
+                            span(class="font-mediun") #{offset + 1}  a 
+                            span(class="font-medium") #{total < limit + offset ? total : limit + offset} de  
+                            span(class="font-mediun") #{total} resultados
+
+
+
+                    div(class="hidden sm:block")
+                        nav(class="relative z-0 inline-flex rounded-md shadow-md") 
+                            - var n = 1;
+                                while   n <= paginas
+                                    a(href=`/mis-propiedades?pagina=${n}`   class=` ${paginaActual == n ? 'bg-indigo-50 border-indigo-500  text-indigo-600' : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50' }  relative  inline-flex  items-center px-4 py-2 border text-sm font-medium` ) #{n++}
                                     
                                     
         else
