@@ -1,7 +1,8 @@
 import  express  from  'express';
+import csrf from 'csurf';
 import userRutas from './routes/userRutas.js'
 import propiedadesRoutes from './routes/propiedadesRoutes.js'
-import csrf from 'csurf'
+import appRoutes from './routes/appRoutes.js'
 import cookieParser from 'cookie-parser';
 import db from './config/db.js';
 
@@ -42,8 +43,10 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 
-
+//carpeta publica
 app.use(express.static('public'));
+
+app.use('/', appRoutes)
 app.use('/out', userRutas);
 app.use('/', propiedadesRoutes);
 

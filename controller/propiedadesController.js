@@ -62,7 +62,7 @@ const admin = async (req, res) =>{
         
      }catch (error) {
         console.log(error);
-        
+        A
      }
         
    
